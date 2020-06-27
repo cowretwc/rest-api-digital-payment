@@ -4,6 +4,7 @@ import * as morgan from 'morgan'
 import * as helmet from 'helmet'
 import * as chalk from 'chalk'
 import * as dotenv from 'dotenv'
+const Database = require('./app/lib/Database')
 const RouterApi = require('./router/api')
 /** Load Env */
 dotenv.config()
@@ -15,6 +16,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(helmet())
 app.use(morgan('dev'))
 app.use('/api/v1',RouterApi)
+Database.testConnection(Database.sequelize)
 /** Define app HOST and PORT */
 const APP_HOST:string = process.env.APP_HOST || 'localhost',APP_PORT:number = +process.env.APP_PORT||8000
 

@@ -1,10 +1,10 @@
 import * as express from 'express'
-
+import {ApiController,Auth} from '../app/controller/ApiController'
 const router: express.Router = express.Router()
 
 
-
-
+router.all('/',new ApiController().info)
+router.post('/public/auth/login',new Auth().login)
 
 
 
